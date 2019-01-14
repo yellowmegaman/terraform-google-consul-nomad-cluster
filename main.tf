@@ -95,8 +95,8 @@ resource "google_compute_instance" "vm" {
   provisioner "remote-exec" {
     when = "destroy"
     inline = [
-      "nomad node -drain -self -enable -yes || true",
-      "consul leave || true ",
+      "sudo nomad node -drain -self -enable -yes",
+      "sudo consul leave",
     ]
     connection {
       type        = "ssh"
