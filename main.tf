@@ -15,7 +15,7 @@ data "template_file" "nomad-config" {
     server_bool      = "${var.mode == "server" ? "true" : "false" }"
     bootstrap_expect = "${var.mode == "server" ? var.count : 0}"
     datacenter       = "${var.datacenter}"
-    client_bool      = "${(var.mode == "server" && var.nomad-client-server == "true") || (var.mode != "server") ? "true" : "false"  }"
+    client_bool      = "${(var.mode == "server" && var.nomad-dense == "true") || (var.mode != "server") ? "true" : "false" }"
   }
 }
 
