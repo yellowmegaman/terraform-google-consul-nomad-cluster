@@ -1,8 +1,8 @@
 output "external-ips" {
-  value = ["${google_compute_instance.vm.*.network_interface.0.access_config.0.assigned_nat_ip}"]
+  value = ["${google_compute_instance.vm.*.network_interface.0.access_config.0.nat_ip}"]
 }
 output "internal-ips" {
-  value = ["${google_compute_instance.vm.*.network_interface.0.address}"]
+  value = ["${google_compute_instance.vm.*.network_interface.0.network_ip}"]
 }
 output "datacenter" {
   value = "${var.datacenter}"
