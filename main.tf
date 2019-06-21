@@ -1,6 +1,6 @@
 data "template_file" "consul-config" {
   template = "${file("${path.module}/templates/consul.hcl")}"
-  vars {
+  vars = {
     bootstrap_expect = "${var.mode == "server" ? var.worker_count : 0}"
     datacenter       = "${var.datacenter}"
     consul_key       = "${var.consul_key}"
@@ -11,7 +11,7 @@ data "template_file" "consul-config" {
 
 data "template_file" "nomad-config" {
   template = "${file("${path.module}/templates/nomad.hcl")}"
-  vars {
+  vars = {
     server_bool      = "${var.mode == "server" ? "true" : "false" }"
     bootstrap_expect = "${var.mode == "server" ? var.worker_count : 0}"
     datacenter       = "${var.datacenter}"
