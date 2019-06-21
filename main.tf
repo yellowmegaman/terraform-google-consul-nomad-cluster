@@ -43,7 +43,7 @@ resource "google_compute_instance" "vm" {
     }
   }
 
-  metadata {
+  metadata = {
     tag         = "${var.tag}"
   }
 
