@@ -26,8 +26,8 @@ resource "google_compute_instance" "vm" {
       ]
   }
   allow_stopping_for_update = true
-  worker_count        = "${var.worker_count}"
-  name         = "${var.tag}-${var.mode}-${worker_count.index}"
+  count        = "${var.worker_count}"
+  name         = "${var.tag}-${var.mode}-${count.index}"
   machine_type = "${var.machine_type}"
   zone         = "${var.zone}"
   tags         = ["${var.tag}", "${var.network_tags}"]
