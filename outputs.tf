@@ -10,6 +10,6 @@ output "datacenter" {
 output "tag" {
   value = "${var.tag}"
 }
-output "count" {
-  value = "${var.count}"
+output "worker_count" {
+  value = "${var.worker_count}"
 }

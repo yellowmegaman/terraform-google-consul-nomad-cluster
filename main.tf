@@ -1,7 +1,7 @@
 data "template_file" "consul-config" {
   template = "${file("${path.module}/templates/consul.hcl")}"
   vars {
-    bootstrap_expect = "${var.mode == "server" ? var.count : 0}"
+    bootstrap_expect = "${var.mode == "server" ? var.worker_count : 0}"
     datacenter       = "${var.datacenter}"
     consul_key       = "${var.consul_key}"
     server_bool      = "${var.mode == "server" ? "true" : "false" }"
@@ -13,7 +13,7 @@ data "template_file" "nomad-config" {
   template = "${file("${path.module}/templates/nomad.hcl")}"
   vars {
     server_bool      = "${var.mode == "server" ? "true" : "false" }"
-    bootstrap_expect = "${var.mode == "server" ? var.count : 0}"
+    bootstrap_expect = "${var.mode == "server" ? var.worker_count : 0}"
     datacenter       = "${var.datacenter}"
     client_bool      = "${(var.mode == "server" && var.nomad-dense == "true") || (var.mode != "server") ? "true" : "false" }"
   }
@@ -26,8 +26,8 @@ resource "google_compute_instance" "vm" {
       ]
   }
   allow_stopping_for_update = true
-  count        = "${var.count}"
-  name         = "${var.tag}-${var.mode}-${count.index}"
+  worker_count        = "${var.worker_count}"
+  name         = "${var.tag}-${var.mode}-${worker_count.index}"
   machine_type = "${var.machine_type}"
   zone         = "${var.zone}"
   tags         = ["${var.tag}", "${var.network_tags}"]

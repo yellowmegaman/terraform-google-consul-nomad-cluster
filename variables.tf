@@ -11,7 +11,7 @@ variable "nomad-dense"  {
 	default     = "true"
 	description = "Whenever to allow running Nomad client alongside Nomad server. Not recommended in production by Hashicorp"
 }
-variable "count"        {
+variable "worker_count"        {
 	description = "Instance count"
 }
 variable "machine_type" {
