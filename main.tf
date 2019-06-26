@@ -69,6 +69,7 @@ resource "google_compute_instance" "vm" {
     content     = "${data.template_file.nomad-config.rendered}"
     destination = "/tmp/nomad.hcl"
     connection {
+      host        = self.network_interface.0.access_config.0.nat_ip
       type        = "ssh"
       agent       = false
       user        = "${var.ssh_user}"
@@ -85,6 +86,7 @@ resource "google_compute_instance" "vm" {
 	"${var.cmd != "" ? var.cmd : "echo"}"
     ]
     connection {
+      host        = self.network_interface.0.access_config.0.nat_ip
       type        = "ssh"
       host        = self.network_interface.0.access_config.0.nat_ip
       agent       = false
