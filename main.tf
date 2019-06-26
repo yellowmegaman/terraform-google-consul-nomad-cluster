@@ -88,7 +88,6 @@ resource "google_compute_instance" "vm" {
     connection {
       host        = self.network_interface.0.access_config.0.nat_ip
       type        = "ssh"
-      host        = self.network_interface.0.access_config.0.nat_ip
       agent       = false
       user        = "${var.ssh_user}"
       private_key = "${var.ssh_key}"
