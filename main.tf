@@ -31,7 +31,7 @@ resource "google_compute_instance" "vm" {
   machine_type = "${var.machine_type}"
   zone         = "${var.zone}"
   tags         = flatten([
-    "var.tag",
+    var.tag,
     "var.network_tags",
   ])
   service_account {
